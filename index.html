@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 信息卡片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f2f4f7;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            padding: 2rem 1.2rem;
+        }
+        .page-wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* 主视觉 hero */
+        .hero {
+            background: linear-gradient(145deg, #ffffff, #f8faff);
+            border-radius: 32px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 20, 30, 0.04);
+            border: 1px solid #e9edf2;
+            transition: box-shadow 0.2s;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+        }
+        .hero .accent {
+            color: #2563eb;
+            font-weight: 600;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 680px;
+            color: #334155;
+            margin-top: 0.4rem;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2.8rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e6eaef;
+            transition: transform 0.15s ease, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.02);
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+            color: #0f172a;
+            border-left: 3px solid #2563eb;
+            padding-left: 0.65rem;
+        }
+        .card p, .card ul {
+            font-size: 0.95rem;
+            color: #334155;
+        }
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .card li {
+            padding: 0.3rem 0 0.3rem 1.1rem;
+            position: relative;
+        }
+        .card li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: #2563eb;
+            font-weight: 700;
+        }
+        .tag {
+            display: inline-block;
+            background: #eef2fa;
+            color: #1e293b;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            margin-right: 0.4rem;
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.01em;
+        }
+
+        /* 自然链接段落 + 特征行 */
+        .context-block {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 2.8rem;
+            border: 1px solid #e6eaef;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .context-block p {
+            font-size: 1rem;
+            color: #1e293b;
+            margin-bottom: 0.9rem;
+        }
+        .context-block a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #94a3b8;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        .context-block a:hover {
+            border-bottom-color: #2563eb;
+            color: #1e4bd2;
+        }
+        .context-block .meta-highlight {
+            display: inline-block;
+            background: #f1f5fa;
+            padding: 0 0.35rem;
+            border-radius: 4px;
+            font-weight: 450;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            background: #ffffff;
+            padding: 2rem 2rem;
+            border-radius: 24px;
+            border: 1px solid #e6eaef;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+        }
+        .faq-item {
+            flex: 1 1 200px;
+        }
+        .faq-item strong {
+            font-weight: 600;
+            color: #0f172a;
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 0.15rem;
+        }
+        .faq-item span {
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
+            margin-top: 1.2rem;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 1rem 0.8rem; }
+            .hero { padding: 2rem 1.2rem; }
+            .hero h1 { font-size: 2rem; }
+            .card-grid { gap: 1.2rem; }
+            .context-block { padding: 1.5rem 1.2rem; }
+            .faq-mini { padding: 1.5rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- hero主视觉 -->
+    <div class="hero">
+        <h1>信息 · <span class="accent">爱游戏</span></h1>
+        <p>围绕游戏资讯、数据对照与延伸阅读的综合信息卡片库。<br>日常查询、快速比照、人群适配——轻量但不简单。</p>
+    </div>
+
+    <!-- 用途卡片 + 适合人群（网格） -->
+    <div class="card-grid">
+        <!-- 卡片1：日常查询与对照 -->
+        <div class="card">
+            <h3>📋 日常查询 · 对照</h3>
+            <p>聚合版本动态、评分浮动、热度趋势，便于横向比对。覆盖多平台数据源，支持快速筛选与标星收藏。</p>
+            <div style="margin-top: 0.75rem;">
+                <span class="tag">版本日志</span>
+                <span class="tag">评分曲线</span>
+                <span class="tag">玩家简评</span>
+                <span class="tag">热度走势</span>
+            </div>
+        </div>
+
+        <!-- 卡片2：延伸阅读 -->
+        <div class="card">
+            <h3>📚 延伸阅读</h3>
+            <p>从专题分析、开发访谈再到社区考据，每一条内容都附带来源与摘要。适合需要深度了解游戏背景或设计脉络的用户。</p>
+            <ul>
+                <li>开发幕后 & 设计思路</li>
+                <li>版本更迭对照表</li>
+                <li>跨作品考据与关联</li>
+            </ul>
+        </div>
+
+        <!-- 卡片3：适合人群 -->
+        <div class="card">
+            <h3>👥 适合人群</h3>
+            <p>无论你是休闲玩家、数据向研究者，还是内容创作者，均可从中找到与自己需求匹配的信息切片。</p>
+            <ul>
+                <li>多平台玩家 · 版本对比需求</li>
+                <li>资讯整理者 · 快速摘录素材</li>
+                <li>新入坑用户 · 了解生态与脉络</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 -->
+    <div class="context-block">
+        <p>在实际使用中，许多用户会同时打开查询界面与资料库进行参照。如果需要获取完整的游戏档案、评价摘要与官方动态，<a href="https://officialmain-aiyouxi.com.cn">爱游戏</a>提供了结构化的信息聚合页面，支持按类型、年代、平台等维度浏览内容。你可以在浏览条目时直接跳转至对应详情，也可以利用标签系统整理自己的关注列表。</p>
+        <p>部分条目还附带社区贡献的对照笔记与版本焦点，方便进行横向比较。页面本身保持轻量，没有过多交互干扰，适合作为信息中台使用。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <div class="faq-item">
+            <strong>数据多久更新？</strong>
+            <span>核心条目随官方动态同步，社区补充部分按周整合。</span>
+        </div>
+        <div class="faq-item">
+            <strong>是否收费？</strong>
+            <span>当前所有基础查阅功能免费，无隐藏订阅。</span>
+        </div>
+        <div class="faq-item">
+            <strong>延伸阅读来源？</strong>
+            <span>标注出处与作者，部分外链可直达原文。</span>
+        </div>
+        <div class="faq-item">
+            <strong>移动端适配？</strong>
+            <span>响应式布局，卡片与列表均按屏幕调整。</span>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+        <span>信息卡片 · 基于公开资料汇编 · 仅供个人参考</span>
+    </div>
+
+</div>
+</body>
+</html>

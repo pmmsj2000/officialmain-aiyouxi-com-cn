@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pmmsj2000.github.io/officialmain-aiyouxi-com-cn/sitemap.xml
