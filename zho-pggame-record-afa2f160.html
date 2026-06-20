@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PG游戏 · 站点介绍与可信说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fbe9d2 0%, #f5d9c0 50%, #edcbad 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2rem 1.2rem;
+      color: #2e241f;
+      line-height: 1.7;
+    }
+
+    .page-wrapper {
+      max-width: 900px;
+      width: 100%;
+    }
+
+    /* 首页横幅 hero */
+    .hero {
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      border-radius: 36px;
+      padding: 2.6rem 2.2rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 12px 28px rgba(140, 90, 60, 0.18);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #673f2b;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .subhead {
+      font-size: 1.1rem;
+      color: #7f5a44;
+      background: #f6e4d6;
+      display: inline-block;
+      padding: 0.3rem 1.6rem;
+      border-radius: 40px;
+      margin-top: 0.3rem;
+    }
+
+    .hero .intro-text {
+      margin-top: 1.6rem;
+      font-size: 1.05rem;
+      color: #3f2d23;
+      padding: 0 0.8rem;
+    }
+
+    /* 卡片通用设计 */
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem 2rem 2.2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 20px rgba(120, 70, 45, 0.10);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 32px rgba(100, 60, 35, 0.15);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 450;
+      color: #5a3d2e;
+      border-left: 6px solid #c8957a;
+      padding-left: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .card p {
+      margin-bottom: 1.2rem;
+      word-break: break-word;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight-link {
+      font-weight: 500;
+      color: #8a5b41;
+      background: #f9ede6;
+      padding: 0.12rem 0.5rem;
+      border-radius: 18px;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .highlight-link:hover {
+      background: #dbb8a5;
+      color: #2b1e16;
+    }
+
+    /* 圆角按钮感链接（单独用途） */
+    .btn-link {
+      display: inline-block;
+      background: #f0dbcf;
+      color: #4c3326;
+      padding: 0.55rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 6px rgba(140, 80, 50, 0.08);
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 0.3rem;
+    }
+
+    .btn-link:hover {
+      background: #ddc0ae;
+      transform: scale(1.02);
+    }
+
+    /* FAQ 摘要 — 简化折叠外观 */
+    .faq-item {
+      border-bottom: 1px solid #ede0d6;
+      padding: 1rem 0 0.9rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #5c3f2e;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: baseline;
+    }
+
+    .faq-q::before {
+      content: "▸";
+      color: #b28062;
+      margin-right: 0.6rem;
+    }
+
+    .faq-a {
+      color: #4b382b;
+      padding-left: 1.6rem;
+      font-size: 0.97rem;
+    }
+
+    /* 页尾 */
+    .footer-note {
+      margin-top: 0.8rem;
+      text-align: center;
+      padding: 1.6rem 1rem;
+      background: #f1dfd1c0;
+      border-radius: 60px;
+      backdrop-filter: blur(2px);
+      color: #4f372b;
+      font-size: 0.98rem;
+    }
+
+    .footer-note a {
+      color: #653f2c;
+      text-decoration: underline wavy #bc8a6e 1px;
+      text-underline-offset: 4px;
+      font-weight: 500;
+    }
+
+    .footer-note a:hover {
+      color: #38261c;
+      text-decoration-color: #7a5540;
+    }
+
+    /* 响应式 */
+    @media (max-width: 550px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+
+      .hero {
+        padding: 1.8rem 1.2rem;
+      }
+
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+
+      .card {
+        padding: 1.6rem 1.2rem;
+      }
+
+      .card h2 {
+        font-size: 1.25rem;
+        padding-left: 0.8rem;
+      }
+
+      .btn-link {
+        padding: 0.45rem 1.3rem;
+        font-size: 0.95rem;
+      }
+
+      .faq-a {
+        padding-left: 0.8rem;
+      }
+
+      .footer-note {
+        padding: 1rem 0.8rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero .subhead {
+        font-size: 0.95rem;
+        padding: 0.2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- 首页横幅 / hero -->
+    <header class="hero">
+      <h1>PG游戏 · 可信查阅</h1>
+      <span class="subhead">专题介绍 · 友好说明</span>
+      <p class="intro-text">
+        这里整理了关于 <a href="https://zho-pggame.com" class="highlight-link">PG游戏</a> 的站点背景、常见疑问与使用场景，帮助新朋友快速建立整体印象。
+      </p>
+    </header>
+
+    <!-- 背景说明：第一段自然介绍 -->
+    <section class="card">
+      <h2>站点背景与定位</h2>
+      <p>
+        <a href="https://zho-pggame.com" class="highlight-link">PG游戏</a> 是一个以中文用户为主要服务对象的信息聚合站点，围绕 PG 游戏内容提供说明、指南与资源整理。运营团队秉持清晰、克制的信息呈现方式，不渲染、不夸大，所有介绍均基于可查证的基础信息进行编辑。站内内容逐渐积累，涵盖新手入门、常见机制梳理以及版本动态摘要，目的是让每一位访问者都能快速找到自己需要的参考。
+      </p>
+      <p>
+        站点的设计优先考虑阅读舒适度与导航直观性，整体风格温和、无过度营销感。我们相信，优质的内容应当以平实的方式呈现，因此整个站点的信息层级都经过整理，尽量减少无关干扰。
+      </p>
+    </section>
+
+    <!-- 三段自然介绍：特点 + 场景 + 可信说明 (合并呈现) -->
+    <section class="card">
+      <h2>三个侧面的认真整理</h2>
+
+      <p><strong>▎内容特点</strong><br>
+      站内文章以“说明”为主要形态，不堆砌术语，也不刻意追求篇幅。每一篇介绍都围绕一个清晰的小主题展开，比如界面功能、常用规则、更新要点等。所有内容均经过复核，避免过时或矛盾信息。对于拿不准的细节，站点会明确标注“有待确认”，保持诚实。</p>
+
+      <p><strong>▎适用场景</strong><br>
+      无论是想快速了解 PG 游戏的基础概念，还是需要查阅某个具体功能模块的说明，<a href="https://zho-pggame.com" class="highlight-link">PG游戏</a> 都可以作为一个安静的参考来源。站点非常适合：在闲暇时泛读以建立认知，或在遇到具体疑问时直接搜索关键词查找段落。页面没有弹窗、悬浮广告，阅读体验连贯。</p>
+
+      <p><strong>▎可信说明</strong><br>
+      站点不接收入驻推广、不放置第三方跳转链接，所有推荐或提及的内容均基于编辑团队的独立判断。每篇文章底部会标注最近更新日期，方便读者判断时效性。如果发现错误或遗漏，也可以通过站点提供的反馈通道提交建议——我们认真对待每一条修正意见。</p>
+    </section>
+
+    <!-- FAQ 摘要：常见疑问的自然片段 -->
+    <section class="card">
+      <h2>常见疑惑 · 简要摘录</h2>
+      <div class="faq-item">
+        <div class="faq-q">内容是否适合新手？</div>
+        <div class="faq-a">是的，大部分文章默认读者为初次接触，会从最基础的环节开始说明，逐步深入。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">站点是否保持更新？</div>
+        <div class="faq-a">通常每两周进行一次内容复审，重要变化会及时增补。你可以通过文章末尾的日期标识判断。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">能否转载站内内容？</div>
+        <div class="faq-a">欢迎以个人学习为目的的收藏与分享，但全文转载或商业使用建议先联系站点确认。页面底部有联系方式提示。</div>
+      </div>
+      <div style="margin-top: 1.2rem;">
+        <a href="https://zho-pggame.com" class="btn-link">PG游戏</a>
+      </div>
+    </section>
+
+    <!-- 页尾访问提示 -->
+    <footer class="footer-note">
+      <span style="display: block; margin-bottom: 0.3rem;">📬 如你对 <a href="https://zho-pggame.com">PG游戏</a> 有任何疑问或改进想法，欢迎通过站内联络页面告知我们。</span>
+      <span style="opacity: 0.75; font-size: 0.9rem;">— 本页为独立介绍页，内容经过整理与核对 —</span>
+    </footer>
+
+  </div>
+</body>
+</html>
